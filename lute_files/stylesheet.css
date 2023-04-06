@@ -1,0 +1,43 @@
+.top {
+  text-align: center;
+}
+
+/* A div class which surround the whole website grid */
+.grid-container {
+  position: relative;
+  padding: 20px;
+  width: 98%;
+}
+
+/* A div class which contains two main grids */
+.grid-item {
+  position: relative;
+  font-size: 25px;
+  padding: 10px;
+  background-color: #379AD6;
+  border: 1px solid white;
+  text-align: center;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 240px 240px 240px 240px 240px 240px 100px 250px 150px ;
+  grid-template-rows: 750px;
+   
+}
+  
+.sub-grid-item {
+  width: 170px;
+  height: 100px;
+  background-color: grey;
+  border: 1px solid white;
+  margin-bottom: 15px;
+  text-align: center;
+  padding-top: 60px;
+
+}
+
+  
+  
+  
+
+
