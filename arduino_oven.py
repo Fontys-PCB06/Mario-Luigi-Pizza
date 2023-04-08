@@ -15,7 +15,7 @@ def Button_Changed(data):
 
 def setup():
     global board
-    board = CustomPymata4(com_port = 'COM5')
+    board = CustomPymata4(com_port = 'COM4')
     board.displayOn()
     board.set_pin_mode_digital_input_pullup(BUTTONPIN, callback = Button_Changed)
     for pin in LED_PINS:

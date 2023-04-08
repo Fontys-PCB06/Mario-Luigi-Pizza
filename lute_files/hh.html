@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesheet.css">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    
     <title>Document</title>
 </head>
 <body>
@@ -51,13 +53,15 @@
       <h2>Order</h2>
       <ul id="order-list"></ul>
       <p>Total: <span id="total">0.00</span></p>
-      <button onclick="submitOrder()">Submit Order</button>
+    
+     <button onclick="submitOrder()">Submit Order</button>
     </div>
 
     <div id="show">
       <h2>Show</h2>
       <ul id="shows"></ul>
     </div>
+
 
     <button onclick="showOrderNames()">Show Order Names</button>
 
@@ -107,11 +111,24 @@
 
 
 
-    
-    function submitOrder() {
-    }
+      function submitOrder() {
+        $.ajax({
+          type: "POST",
+          url: "/order_data",
+          data: JSON.stringify({"name": orderList}),
+          contentType: "application/json; charset=utf-8",
+          dataType: "json",
+          success: function() {
+            console.log("List sent successfully");
+          },
+          error: function() {
+            console.log("Error sending list");
+          }
+        });
+      }
+
     </script>
-    
+
     
  </body>
  

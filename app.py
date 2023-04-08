@@ -5,7 +5,7 @@ import json
 
 app = Flask(__name__)
 
-orderList = ["red", "blue", "yellow", "wasd", "a", "r"]
+orderList = []
 
 @app.route('/')
 def Main_Page():
@@ -23,21 +23,22 @@ def arduino_contact():
             return json.dumps(False)        
     
     elif request.get_json() == 'pizza_done':
-        #orderList.pop(0)
 
         for i in range(len(orderList) - 1):
             orderList[i] = orderList[i + 1]
 
         orderList = orderList[:-1]
         return json.dumps('received')
+        print(orderList)
+
         
 
 @app.route('/order_data', methods = ['POST'])
 def order_data_proccessing():
     global orderList
-    tempOrderList = []
 
-    tempOrderList = request.get_json()
-    for pizza in tempOrderList:
-        orderList.append(pizza)
+    receivedData = request.get_json()
+    orderList.extend(receivedData['filteredOrderList'])
     
+    print(orderList)
+    return json.dumps('Received')
