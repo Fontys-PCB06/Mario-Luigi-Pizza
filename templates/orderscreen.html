@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/stylesheet.css">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <title>Orderscreen</title>
+</head>
+
+
+<body>
+    <div class="grid-container">
+        <div class="grid-item grid-item-1">
+            <div class="sub-grid-item sub-grid-item-1">
+                <button onclick="addItem('Pepperoni Pizza', 11.99)">Pepperoni Pizza $13.99</button>
+            </div>
+            <div class="sub-grid-item sub-grid-item-2">
+                <button onclick="addItem('BBQ Chicken Pizza', 12.99)">BBQ Chicken Pizza $13.99</button> 
+            </div>
+            <div class="sub-grid-item sub-grid-item-2">
+                <button onclick="addItem('Four Cheese Pizza', 11.99)">Four Cheese Pizza $13.99</button> 
+            </div>
+            <div class="sub-grid-item sub-grid-item-2">
+                <button onclick="addItem('Margaritha Pizza', 11.99)">Margaritha Pizza $13.99</button> 
+            </div>
+        </div>
+        <div class="grid-item grid-item-2">
+            <div class="sub-grid-item sub-grid-item-2">
+                <button onclick="addItem('Meat Lovers Pizza', 13.99)">Meat Lovers Pizza $13.99</button> 
+            </div>
+            <div class="sub-grid-item sub-grid-item-2">
+                <button onclick="addItem('Pulled Pork Pizza', 13.99)">Pulled Pork Pizza $13.99</button> 
+            </div>
+            <div class="sub-grid-item sub-grid-item-2">
+                <button onclick="addItem('Caprese Pizza', 13.99)">Caprese Pizza $13.99</button> 
+            </div>
+            <div class="sub-grid-item sub-grid-item-2">
+                <button onclick="addItem('Chicken Kebab Pizza', 13.99)">Chicken Kebab Pizza $13.99</button> 
+            </div>
+        </div>
+        <div class="grid-item grid-item-3">
+            <div class="sub-grid-item sub-grid-item-2">
+                <button onclick="addItem('Ham Pizza', 13.99)">Ham Pizza $13.99</button> 
+            </div>
+        </div>
+        <div class="grid-item grid-item-4">
+            <div class="sub-grid-item sub-grid-item-2">
+                <button onclick="addItem('Coca Cola (0.33L)', 2.49)">Coca Cola (0.33L) $2.49</button> 
+            </div>
+            <div class="sub-grid-item sub-grid-item-2">
+                <button onclick="addItem('Fernandes (0.33L)', 2.49)">Fernandes (0.33L) $2.49</button> 
+            </div>
+            <div class="sub-grid-item sub-grid-item-2">
+                <button onclick="addItem('Fanta (0.33L)', 2.49)">Fanta (0.33L) $2.49</button> 
+            </div>
+            <div class="sub-grid-item sub-grid-item-2">
+                <button onclick="addItem('Coca Cola Cherry (0.33L)', 2.49)">Coca Cola Cherry (0.33L) $2.49</button> 
+            </div>
+        </div>
+        <div class="grid-item grid-item-5">
+            <div class="sub-grid-item sub-grid-item-2">
+                <button onclick="addItem('Amstel Radler 0.0 (0.33L)', 2.49)">Amstel Radler 0.0 (0.33L) $2.49</button> 
+            </div>
+            <div class="sub-grid-item sub-grid-item-2">
+                <button onclick="addItem('Heineken 0.0 (0.33L)', 2.49)">Heineken 0.0 (0.33L) $2.49</button> 
+            </div>
+        </div>
+        <div class="grid-item grid-item-9">
+            <div id="order">
+                <p>Details</p>
+                <p id="order-list"></p>
+                <p>Total: <span id="total"> 0.00</span></p>
+            </div>
+          <button class="submit" onclick="submitOrder()">Submit Order</button>
+            </div>
+      </div>
+  
+     <script>
+    var orderList = [];
+    var total = 0.00;
+    
+    function addItem(name, price) {
+      orderList.push({name: name, price: price});
+      total += price;
+      updateOrderList();
+    }
+    
+    function removeItem(index) {
+      total -= orderList[index].price;
+      orderList.splice(index, 1);
+      updateOrderList();
+    }
+    
+    function updateOrderList() {
+      var orderListElement = document.getElementById("order-list");
+      orderListElement.innerHTML = "";
+      for (var i = 0; i < orderList.length; i++) {
+        var item = orderList[i];
+        var itemElement = document.createElement("li");
+        itemElement.innerHTML = item.name + " - $" + item.price.toFixed(2) + " <button onclick=\"removeItem(" + i + ")\">Remove</button>";
+        orderListElement.appendChild(itemElement);
+      }
+      document.getElementById("total").innerHTML = total.toFixed(2);
+    }
+
+    function showOrderNames() {
+      var orderListElement = document.getElementById("shows");
+      orderListElement.innerHTML = "Order: ";
+      for (var i = 0; i < orderList.length; i++) {
+        var item = orderList[i];
+        orderListElement.innerHTML += item.name;
+        if (i < orderList.length - 1) {
+          orderListElement.innerHTML += ", ";
+        }
+      }
+    }
+
+
+
+      function submitOrder() {
+        let filteredOrderList = orderList.filter(obj => Object.keys(obj).includes("name"))
+                     .map(obj => obj.name);
+        $.ajax({
+          type: "POST",
+          url: "/order_data",
+          data: JSON.stringify({filteredOrderList}),
+          contentType: "application/json; charset=utf-8",
+          dataType: "text",
+          success: function() {
+            console.log("List sent successfully");
+          },
+          error: function() {
+            console.log("Error sending list");
+          }
+        });
+      }
+
+    </script>
+ </body>
+</html>
