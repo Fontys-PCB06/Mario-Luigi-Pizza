@@ -76,10 +76,11 @@
                 <p>Total: <span id="total"> 0.00</span></p>
             </div>
           <button class="submit" onclick="submitOrder()">Submit Order</button>
-            </div>
+          <button onclick=deleteitems()>Pick up order</button>
+        </div>
       </div>
   
-     <script>
+    <script>
     var orderList = [];
     var total = 0.00;
     
@@ -121,23 +122,39 @@
 
 
 
-      function submitOrder() {
-        let filteredOrderList = orderList.filter(obj => Object.keys(obj).includes("name"))
-                     .map(obj => obj.name);
+    function submitOrder() {
+      let filteredOrderList = orderList.filter(obj => Object.keys(obj).includes("name"))
+                   .map(obj => obj.name);
+      $.ajax({
+        type: "POST",
+        url: "/order_data",
+        data: JSON.stringify({filteredOrderList}),
+        contentType: "application/json; charset=utf-8",
+        dataType: "text",
+        success: function() {
+          console.log("List sent successfully");
+        },
+        error: function() {
+          console.log("Error sending list");
+        }
+      });
+    }
+
+    function deleteitems() {
         $.ajax({
           type: "POST",
-          url: "/order_data",
-          data: JSON.stringify({filteredOrderList}),
+          url: "/finished_update",
+          data: JSON.stringify({value: 'true'}),
           contentType: "application/json; charset=utf-8",
           dataType: "text",
           success: function() {
-            console.log("List sent successfully");
+            console.log("Updated finished list");
           },
           error: function() {
-            console.log("Error sending list");
+            console.log("Error updating finished list");
           }
         });
-      }
+    }
 
     </script>
  </body>

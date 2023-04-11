@@ -121,3 +121,9 @@ body{
     text-transform: uppercase;
 }
 
+.heading>h3{
+    font-weight: 600;
+    font-size:20px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}

@@ -67,3 +67,18 @@ def order_data_proccessing():
     print(finishedList)
 
     return json.dumps('Received')
+
+@app.route('/finished_update', methods = ['POST']) # type: ignore
+def finished_list_update():
+    global finishedList
+    data = request.get_json()
+
+    if data['value'] == 'true':
+        if len(finishedList) >= 1:
+            finishedList.pop(0)
+
+    return json.dumps('Received')
+
+@app.route('/kitchen')
+def kitchen_screen():
+    return render_template('kitchen.html', orderList = orderList)

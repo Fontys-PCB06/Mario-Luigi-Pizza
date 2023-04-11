@@ -6,7 +6,7 @@
         <meta name="=viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
         <title>Deals</title>
-        <link rel="stylesheet" href="../static/finishedOrders.css">
+        <link rel="stylesheet" href="../static/menu.css">
         <script>
             setInterval(function() {
                 location.reload();
@@ -15,12 +15,28 @@
     </head>
 
     <body>
-        <h1>Finished pizzas</h1>
+        <nav class="navigation">
+            <div class="logo">
+                <img src="../static/img/thumbnail_logo.png" alt="logo">
+            </div>
+            <ul class="menu">
+                <li><a href="http://127.0.0.1:5000/">Menu</a></li>
+                <li><a href="http://127.0.0.1:5000/deals">Deals</a></li>
+                <li><a href="http://127.0.0.1:5000/contact">Contact</a></li>
+                <li><a href="http://127.0.0.1:5000/finished">Finished</a></li>
+              </ul>
+          </nav>
+          <div class="menu">
+            <div class="heading">
+              <h1>Mario's and Luigi's Pizzaria</h1>
+              <h3>&mdash;Finished Orders&mdash;</h3>
+            </div>
+            </div>
+        <div class="finished">
+            {% for pizza in finishedList %}
+            <p><b>{{pizza}}</b></p>
 
-        {% for pizza in finishedList %}
-        <p><b>{{pizza}}</b></p>
-
-        {% endfor %}
-
+            {% endfor %}
+        </div>
     </body>
 </html>
