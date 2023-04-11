@@ -1,138 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/stylesheet.css">
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-    
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href= "../static/menu.css">
+  <title>Menu</title>
 </head>
 <body>
-  <div id="menu">
-    <h2>Menu</h2>
-        <h3>Pepperoni Pizza</h3>
-        <p>$10.00</p>
-        <button onclick="addItem('Pizza 1', 10.00)">Add</button>
-
-        <h3>Four Cheese Pizza</h3>
-        <p>$12.00</p>
-        <button onclick="addItem('Pizza 2', 12.00)">Add</button>
-    
-        <h3>Ham Pizza</h3>
-        <p>$8.00</p>
-        <button onclick="addItem('Pizza 3', 8.00)">Add</button>
-
-        <h3>Pepperoni Pizza</h3>
-        <p>$10.00</p>
-        <button onclick="addItem('Pizza 1', 10.00)">Add</button>
-
-        <h3>Four Cheese Pizza</h3>
-        <p>$12.00</p>
-        <button onclick="addItem('Pizza 2', 12.00)">Add</button>
-    
-        <h3>Ham Pizza</h3>
-        <p>$8.00</p>
-        <button onclick="addItem('Pizza 3', 8.00)">Add</button>
-
-        <h3>Pepperoni Pizza</h3>
-        <p>$10.00</p>
-        <button onclick="addItem('Pizza 1', 10.00)">Add</button>
-
-        <h3>Four Cheese Pizza</h3>
-        <p>$12.00</p>
-        <button onclick="addItem('Pizza 2', 12.00)">Add</button>
-    
-        <h3>Ham Pizza</h3>
-        <p>$8.00</p>
-        <button onclick="addItem('Pizza 3', 8.00)">Add</button>
+  <nav class="navigation">
+    <div class="logo">
+        <img src="../static/img/thumbnail_logo.png" alt="logo">
     </div>
-  
-    <div id="order">
-      <h2>Order</h2>
-      <ul id="order-list"></ul>
-      <p>Total: <span id="total">0.00</span></p>
-    
-     <button onclick="submitOrder()">Submit Order</button>
+    <ul class="menu">
+        <li><a href="http://127.0.0.1:5000/">Menu</a></li>
+        <li><a href="http://127.0.0.1:5000/deals">Deals</a></li>
+        <li><a href="http://127.0.0.1:5000/contact">Contact</a></li>
+      </ul>
+  </nav>
+  <div class="menu">
+    <div class="heading">
+      <h1>Mario's and Luigi's Pizzaria</h1>
+      <h3>&mdash;Menu&mdash;</h3>
     </div>
-
-    <div id="show">
-      <h2>Show</h2>
-      <ul id="shows"></ul>
     </div>
-
-
-    <button onclick="showOrderNames()">Show Order Names</button>
-
-    
-
-
-    
-    <script>
-    var orderList = [];
-    var total = 0.00;
-    
-    function addItem(name, price) {
-      orderList.push({name: name, price: price});
-      total += price;
-      updateOrderList();
-    }
-    
-    function removeItem(index) {
-      total -= orderList[index].price;
-      orderList.splice(index, 1);
-      updateOrderList();
-    }
-    
-    function updateOrderList() {
-      var orderListElement = document.getElementById("order-list");
-      orderListElement.innerHTML = "";
-      for (var i = 0; i < orderList.length; i++) {
-        var item = orderList[i];
-        var itemElement = document.createElement("li");
-        itemElement.innerHTML = item.name + " - $" + item.price.toFixed(2) + " <button onclick=\"removeItem(" + i + ")\">Remove</button>";
-        orderListElement.appendChild(itemElement);
-      }
-      document.getElementById("total").innerHTML = total.toFixed(2);
-    }
-
-    function showOrderNames() {
-      var orderListElement = document.getElementById("shows");
-      orderListElement.innerHTML = "Order: ";
-      for (var i = 0; i < orderList.length; i++) {
-        var item = orderList[i];
-        orderListElement.innerHTML += item.name;
-        if (i < orderList.length - 1) {
-          orderListElement.innerHTML += ", ";
-        }
-      }
-    }
-
-
-
-      function submitOrder() {
-        let filteredOrderList = orderList.filter(obj => Object.keys(obj).includes("name"))
-                     .map(obj => obj.name);
-        $.ajax({
-          type: "POST",
-          url: "/order_data",
-          data: JSON.stringify({filteredOrderList}),
-          contentType: "application/json; charset=utf-8",
-          dataType: "text",
-          success: function() {
-            console.log("List sent successfully");
-          },
-          error: function() {
-            console.log("Error sending list");
-          }
-        });
-      }
-
-    </script>
-
-    
- </body>
- 
- </body>
+    <div class="food-container">
+      <div class="food">
+        <img src="https://www.moulinex-me.com/medias/?context=bWFzdGVyfHJvb3R8MTQzNTExfGltYWdlL2pwZWd8aGNlL2hmZC8xNTk2ODYyNTc4NjkxMC5qcGd8MmYwYzQ4YTg0MTgzNmVjYTZkMWZkZWZmMDdlMWFlMjRhOGIxMTQ2MTZkNDk4ZDU3ZjlkNDk2MzMzNDA5OWY3OA" alt="Pizza">
+        <div class="details">
+          <div class="details-sub">
+            <h5>Pepperoni Pizza</h5>
+            <h5 class="price">$11,99</h5>
+            <p> A classic pizza made with tomato sauce, mozzarella cheese, and slices of pepperoni sausage on top.</p>
+          </div>
+        </div>
+      </div>
+      <div class="food">
+        <img src="https://www.seasonsandsuppers.ca/wp-content/uploads/2018/03/bbq-chicken-skillet-pizza-1200.jpg" alt="bbq chicken pizza">
+        <div class="details">
+          <div class="details-sub">
+            <h5>BBQ Chicken Pizza</h5>
+            <h5 class="price">$12,99</h5>
+            <p>Typically made with a BBQ sauce base, this pizza often includes toppings like chicken or pork, red onions, and sometimes pineapple.</p>
+          </div>
+        </div>
+      </div>
+      <div class="food">
+        <img src="https://images.deliveryhero.io/image/fd-op/LH/t4sk-hero.jpg" alt="Spaghetti">
+        <div class="details">
+          <div class="details-sub">
+            <h5>Four Cheese Pizza</h5>
+            <h5 class="price">$11,99</h5>
+            <p>A pizza that includes a variety of different cheeses, often including mozzarella, parmesan, cheddar, and another soft cheese like ricotta or feta.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="food food-row-2">
+      <img src="../static/img/margerita.png">
+      <div class="food-content">
+        <h5>Margaritha Pizza</h5>
+        <h5 class="price">$11,99</h5>
+        <p>A simple pizza made with tomato sauce, fresh mozzarella cheese, and fresh basil. A classic pizza favourite.
+          
+        </p>
+      </div>
+    </div>
+    <div class="food food-row-2">
+      <img src="../static/img/meatlover.jpg">
+      <div class="food-content">
+        <h5>Meat Lovers Pizza</h5>
+        <h5 class="price">$13,90</h5>
+        <p>This pizza is topped with a variety of meats, such as sausage, bacon, pepperoni, and sometimes ham or ground beef.</p>
+      </div>
+    </div>
+    <div class="food food-row-2">
+      <img src="../static/img/pulled-pork.jpg">
+      <div class="food-content">
+        <h5>Pulled Pork Pizza</h5>
+        <h5 class="price">$13.99</h5>
+        <p>Made with BBQ sauce, pulled pork, and typically some kind of cheese, this pizza is a delicious twist on traditional BBQ.</p>
+      </div>
+    </div>
+    <div class="food food-row-3">
+      <img src="../static/img/caprese.jpg">
+      <div class="food-content">
+        <h5>Caprese pizza</h5>
+        <h5 class="price">$13.99</h5>
+        <p>Similar to a Margherita pizza, but includes fresh sliced tomatoes and sometimes balsamic glaze in addition to the fresh mozzarella and basil.</p>
+      </div>
+    </div>
+    <div class="food food-row-3">
+      <img src="../static/img/chickenkebab.jpg">
+      <div class="food-content">
+        <h5>Chicken Kebab Pizza</h5>
+        <h5 class="price">$13.99</h5>
+        <p>A pizza that includes chicken kebab meat, usually marinated in a blend of spices and yogurt, along with onions, peppers, and sometimes a creamy sauce.</p>
+      </div>
+    </div>
+    <div class="food food-row-3">
+      <img src="../static/img/ham.jpg">
+      <div class="food-content">
+        <h5>Ham Pizza</h5>
+        <h5 class="price">$13.99</h5>
+        <p>A pizza made with tomato sauce, mozzarella cheese, and sliced ham on top. Often served with pineapple as a Hawaiian pizza.</p>
+      </div>
+    </div>
+    <div class="food food-row-4">
+      <img src="../static/img/coke.png">
+      <div class="food-content">
+        <h5>Coca Cola</h5>
+        <h5 class="price">$2.49</h5>
+        <p>0,33 liter</p>
+      </div>
+    </div>
+    <div class="food food-row-4">
+      <img src="../static/img/fernandes.png">
+      <div class="food-content">
+        <h5>Fernandes</h5>
+        <h5 class="price">$2,49</h5>
+        <p>0,33 liter</p>
+      </div>
+    </div>
+    <div class="food food-row-4">
+      <img src="../static/img/fanta.png">
+      <div class="food-content">
+        <h5>Fanta</h5>
+        <h5 class="price">$2,49</h5>
+        <p>0,33 liter</p>
+      </div>
+    </div>
+    <div class="food food-row-5">
+      <img src="../static/img/coke-cherry.png">
+      <div class="food-content">
+        <h5>Coca Cola Cherry</h5>
+        <h5 class="price">$2.99</h5>
+        <p>0,33 liter</p>
+      </div>
+    </div>
+    <div class="food food-row-5">
+      <img src="../static/img/amstel.png">
+      <div class="food-content">
+        <h5>Amstel Radler 0.0</h5>
+        <h5 class="price">$2.99</h5>
+        <p>0,33 liter</p>
+      </div>
+    </div>
+    <div class="food food-row-5">
+      <img src="../static/img/heineken.png">
+      <div class="food-content">
+        <h5>Heineken 0.0</h5>
+        <h5 class="price">$2.99</h5>
+        <p>0,33 liter</p>
+      </div>
+    </div>
+  </div>
+</body>
 </html>

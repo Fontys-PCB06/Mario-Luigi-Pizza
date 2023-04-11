@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&family=Raleway:wght@300;500&display=swap');
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    /* background-image: ; */
+}
+
+
+.nav{
+    height: 70px;
+    background-color: crimson;
+
+}
+nav ul li{
+    display: inline-block;
+    /* margin-right: 100px; */
+    /* right: 100%; */
+    padding: 10px 20px;
+    list-style-type: none;
+}
+
+nav ul li a{
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    text-decoration-line: overline;
+    font-weight: bolder;
+ 
+
+
+}
+body{
+    background-color:azure;
+    font-family: 'Poppins', sans-serif;
+}
+/* .navigation{
+    
+    text-decoration-style: double;
+
+} */
+.itemmenu img {
+    width: 200px;
+    margin-right: 20px;
+    
+}
+
+.wrapper{
+
+    width: 1200px; /*change this to 1200 to make all the items come closer together */
+    margin: 100px auto;
+
+
+}
+
+.title{
+    text-align:center;
+    margin-bottom: 60px;
+}
+
+.title h4{
+    text-transform: capitalize;
+    font-size: 36px;
+    position: relative;
+    display: inline-block;
+}
+
+.title h4 span{
+    display: block;
+    font-size: 18px;
+    /* font-style:italic; */
+    margin-bottom: 15px
+    ;
+
+}
+
+.title h4::before{
+    position:absolute;
+    content:"";
+    width: 100px;
+    background-color: crimson;
+    bottom: 0;
+    left: 50%;
+    transform:translateX(-50%);
+    padding:1px;
+
+
+
+
+
+}
+
+.menu{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+
+}
+
+.itemmenu{
+    box-shadow: 0 0 10px 0;
+    background-color: rgb(246, 253, 253);
+    flex-basis: 580px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+
+
+}
+
+/* .itemmenu:nth-child(4), .itemmenu:nth-child(5){
+
+    border-bottom:20px;
+
+} */
+
+.itemmenu{
+    display: flex;
+    flex-direction:row;
+    /* align-items: center; */
+}
+
+.itemmenu img{
+    max-width: 180px;
+    /* margin-right: 30px; */
+    border: 5px solid black;
+    padding: 0;
+    border-color: black;
+}
+
+.itemmenu h4{
+    border-bottom: dotted;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+
+}
+
+.span1{
+color: crimson;
+
+}
+
+.icecream{
+    height: 110px;
+
+}
+
+/* body{
+
+    background-image: url(https://www.pixelstalk.net/wp-content/uploads/2016/10/Black-And-Grey-Wallpaper-HD.png);
+} */
+
+.logo image{
+
+    height: 200px;
+    width: 100px;
+    margin-right: 10px;
+    position: absolute;
+    margin-top: 10px;
+    margin-right: 10px;
+    display: block;
+
+}
+
+.logo img{
+    margin-right: 10px;
+    border-radius: 70%;
+    width: 75px;
+}
+
+
+/* .logo{
+    flex: 10;
+} */
+
+.menu{
+    display: flex;
+    height: px;
+}
+
+.about{
+    text-align: left;
+    /* margin-top: 5%;
+    list-style-type: none; */
+    font-size: 20px;
+}
+
+/* .contact{
+    text-align: left;
+    font-size: 20px;
+} */
+
+.navigation{
+    display: flex;
+    background-color: crimson;
+    font-family: 'Poppins', sans-serif;
+    
+}
+
+/*  */
+
+.menufood{
+    padding: 0 0px 30px 0px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
+    /* grid-gap: 20px 30px; */
+}
+
+.heading{
+    background: #e84343;
+    color: #fff;
+    padding: 30px 0;
+    grid-column: 1/-1;
+    text-align:center;
+}
+
+.heading>h1{
+    font-weight:400;
+    font-size:32px;
+    letter-spacing: 10px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
